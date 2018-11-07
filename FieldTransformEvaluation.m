@@ -3,7 +3,7 @@ clear
 units;
 %%
 path = [cd '/Optimized/'];
-filename = 'HG2LG_5_layers.mat';
+filename = 'ModeTransformation_10_layers.mat';
 load([path,filename]);
 LoadGlobal;
 ModeNum = length(InputModes);
@@ -61,9 +61,9 @@ imagesc(SF);
 for input_mode_index = 1:ModeNum
     for output_mode_index = 1:ModeNum    
         if(input_mode_index==output_mode_index)
-            text(output_mode_index-0.4,input_mode_index,num2str(SF(input_mode_index,output_mode_index),'%0.4f'),'Color',[0 0 0],'FontSize',18);
+            text(output_mode_index-0.4,input_mode_index,[' ' num2str(SF(input_mode_index,output_mode_index)*100,'%0.1f'),'%'],'Color',[0 0 0],'FontSize',18);
         else
-            text(output_mode_index-0.4,input_mode_index,num2str(SF(input_mode_index,output_mode_index),'%0.4f'),'Color',[1 1 1],'FontSize',18);
+            text(output_mode_index-0.4,input_mode_index,[num2str(log(SF(input_mode_index,output_mode_index))/log(10)*10,'%0.0f'),'dB'],'Color',[1 1 1],'FontSize',18);
         end
     end
 end
